@@ -1,10 +1,10 @@
 <?php
-require 'parseBookXML.php';
+require_once('library/parseBookXML.php');
+require_once('../../mlConfig.php');
 
-$dir    = '../../ebooks/';
+$dir    = mlConfig::$ebookLocation;
 @$echo = $_REQUEST['sEcho'];
 $files = opendir($dir);
-$fileDir = '/var/www/ebooks/';
 
 $bookCounter = 0;
 $fileCheck = array();
@@ -78,7 +78,7 @@ while(false !== ($file = readdir($files))){
 				if(isset($bookInfo->guide->reference))
 					$jpgFile = $bookInfo->guide->reference->attributes()->href;
 			}
-			$fileLocation = $fileDir . $file;
+			$fileLocation = $dir . $file;
 			$row = array("<input name=\"bookCh[]\" type=\"checkbox\" value=\"$fileLocation\"/>",$author, $title,$subject,
 			"<button id=\"MI$bookCounter\" class=\"btn btn-small\" onClick=\"$('#infoRequest').val('MI$bookCounter'); $('#infoRequest').click();\">More Info</button>"
 			,$file,$identifier,$description,$date,$jpgFile);

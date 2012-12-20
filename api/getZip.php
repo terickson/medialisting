@@ -1,5 +1,7 @@
 <?php
-$file = '/tmp/books.tar.gz';
+require_once('../../mlConfig.php');
+
+$file = mlConfig::$ebookTarFile;
 $bookFiles = json_decode($_REQUEST['files']);
 exec("rm -f $file", $compressOutput);
 $zipCommand = "tar zcvf $file";

@@ -1,5 +1,5 @@
 <?php
-require_once("../../googleSetup.php");
+require_once("../../mlConfig.php");
 $title = urlencode($_REQUEST["title"]);
 $author = urlencode($_REQUEST["author"]);
 $isbn=$_REQUEST["isbn"];
@@ -10,7 +10,7 @@ if(!empty($isbn)){
 }else{
 	$googleAPI .= "intitle:\"$title\"+inauthor:\"$author\"";
 }
-$googleAPI .= "&maxResults=1&key=$myGoogleKey";
+$googleAPI .= "&maxResults=1&key=".mlConfig::$myGoogleKey;
 $ch = curl_init($googleAPI);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 curl_setopt($ch, CURLOPT_URL, $googleAPI);

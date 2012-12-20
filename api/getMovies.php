@@ -1,6 +1,8 @@
 <?php
+require_once('../../mlConfig.php');
+
 @$echo = $_REQUEST['sEcho'];
-$dir    = '../../movies/';
+$dir    = mlConfig::$movieLocation;
 $files = scandir($dir);
 $movieCounter = 0;
 $returnData = array("sEcho"=>$echo,"aaData"=>array());
