@@ -3,6 +3,11 @@ function MovieListCtrl($scope, $routeParams, $http, $location, myMediaService)
 	myMediaService.setActive($location.$$path);  
 }
 
+function MusicListCtrl($scope, $routeParams, $http, $location, myMediaService) 
+{
+  myMediaService.setActive($location.$$path);  
+}
+
 function BookListCtrl($scope, $routeParams, $http, $location, myMediaService)  
 {
 	myMediaService.setActive($location.$$path);
