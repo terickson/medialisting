@@ -9,17 +9,17 @@ $returnData = array("sEcho"=>$echo,"aaData"=>array());
 
 foreach($artists as $artist)
 {
-	if((strlen($artist) > 2) && $artist != 'lost+found' && is_dir($dir.$artist.'/'))
+	if($artist != '.' && $artist != '..' && $artist != 'lost+found' && is_dir($dir.$artist.'/'))
 	{
 		$albums = scandir($dir.$artist.'/');
 		foreach($albums as $album)
 		{
-			if((strlen($album) > 2) && $album != 'lost+found'  && is_dir($dir.$artist.'/'.$album.'/'))
+			if($album != '.' && $album != '..' && $album != 'lost+found'  && is_dir($dir.$artist.'/'.$album.'/'))
 			{
 				$songs = scandir($dir.$artist.'/'.$album.'/');
 				foreach($songs as $song)
 				{
-					if((strlen($song) > 2) && $song != 'lost+found' && strrpos ($song,'.') !== 0)
+					if($song != '.' && $song != '..' && $song != 'lost+found' && is_file($dir.$artist.'/'.$album.'/'.$song) !== 0)
 					{
 						$musicCounter++;
 						array_push($returnData["aaData"],array('<input name="songCh[]" type="checkbox" value="'.$dir.$artist.'/'.$album.'/'.$song.'"/>', 
