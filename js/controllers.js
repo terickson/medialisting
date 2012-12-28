@@ -9,29 +9,12 @@ function MusicListCtrl($scope, $routeParams, $http, $location, myMediaService)
 
   $scope.clickCheckAll = function()
   {
-      if($("input[name=checkAll]").attr("checked") == "checked")
-      {
-        $("input[name='songCh[]']").attr("checked", "checked");
-      } else {
-        $("input[name='songCh[]']").removeAttr("checked");  
-      }
+      myMediaService.checkAllService("checkAll", "songCh");
   };
 
   $scope.downloadSelected = function()
   {
-      selected = $("input[name='songCh[]']:checked").map(function () {
-        return escape(this.value);
-    }).get();
-      
-      if(selected.length > 0)
-      {
-        zipLocation="api/getZip.php?fileName="+escape("songs.tar.gz")+"&files="+ JSON.stringify(selected);
-        window.document.location.href = zipLocation;
-      }
-      else
-      {
-        alert('No Songs were Selected');
-      }
+    myMediaService.downloadService('songCh', 'songs.tar.gz', 'No Songs were Selected');
   };
 }
 
@@ -41,29 +24,12 @@ function BookListCtrl($scope, $routeParams, $http, $location, myMediaService)
 
 	$scope.clickCheckAll = function()
 	{
-  		if($("input[name=checkAll]").attr("checked") == "checked")
-  		{
-  			$("input[name='bookCh[]']").attr("checked", "checked");
-  		} else {
-  			$("input[name='bookCh[]']").removeAttr("checked");	
-  		}
+  		myMediaService.checkAllService("checkAll", "bookCh");
 	};
 
 	$scope.downloadSelected = function()
 	{
-  		selected = $("input[name='bookCh[]']:checked").map(function () {
-  			return escape(this.value);
-		}).get();
-  		
-  		if(selected.length > 0)
-  		{
-  			zipLocation="api/getZip.php?fileName="+escape("books.tar.gz")+"&files="+ JSON.stringify(selected);
-        window.document.location.href = zipLocation;
-  		}
-  		else
-  		{
-  			alert('No Books were Selected');
-  		}
+      myMediaService.downloadService('bookCh', 'books.tar.gz', 'No Books were Selected');
 	};
 
 	$scope.getBookInfo = function()
@@ -115,6 +81,4 @@ function BookListCtrl($scope, $routeParams, $http, $location, myMediaService)
 	{
         $scope.getGoogleInfo($("#googleRequest").val());
 	};
-
-
 }
