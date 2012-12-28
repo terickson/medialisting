@@ -11,6 +11,7 @@ Class mlConfig
 	public static $myGoogleKey = <<Your Google Key>>;
 	public static $movieLocation = <<The location of your movies>>;
 	public static $ebookLocation = <<The location of your ebooks>>;
-	public static $ebookTarFile = <<The tar file location for your downloaded books ex: /tmp/books.tar.gz>>;
+	public static $tarFileDir = <<The tar file temp location for your downloaded material ex: /tmp/>>;
+	public static $musicLocation = <<The location of your music>>;
 }
 ?>

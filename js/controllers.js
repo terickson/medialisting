@@ -5,7 +5,34 @@ function MovieListCtrl($scope, $routeParams, $http, $location, myMediaService)
 
 function MusicListCtrl($scope, $routeParams, $http, $location, myMediaService) 
 {
-  myMediaService.setActive($location.$$path);  
+  myMediaService.setActive($location.$$path); 
+
+  $scope.clickCheckAll = function()
+  {
+      if($("input[name=checkAll]").attr("checked") == "checked")
+      {
+        $("input[name='songCh[]']").attr("checked", "checked");
+      } else {
+        $("input[name='songCh[]']").removeAttr("checked");  
+      }
+  };
+
+  $scope.downloadSelected = function()
+  {
+      selected = $("input[name='songCh[]']:checked").map(function () {
+        return escape(this.value);
+    }).get();
+      
+      if(selected.length > 0)
+      {
+        zipLocation="api/getZip.php?fileName="+escape("songs.tar.gz")+"&files="+ JSON.stringify(selected);
+        window.document.location.href = zipLocation;
+      }
+      else
+      {
+        alert('No Songs were Selected');
+      }
+  };
 }
 
 function BookListCtrl($scope, $routeParams, $http, $location, myMediaService)  
@@ -14,7 +41,6 @@ function BookListCtrl($scope, $routeParams, $http, $location, myMediaService)
 
 	$scope.clickCheckAll = function()
 	{
-  		//alert($("input[name=checkAll]").attr('checked'));
   		if($("input[name=checkAll]").attr("checked") == "checked")
   		{
   			$("input[name='bookCh[]']").attr("checked", "checked");
@@ -31,8 +57,8 @@ function BookListCtrl($scope, $routeParams, $http, $location, myMediaService)
   		
   		if(selected.length > 0)
   		{
-  			zipLocation="api/getZip.php?files="+ JSON.stringify(selected);
-        	window.document.location.href = zipLocation;
+  			zipLocation="api/getZip.php?fileName="+escape("books.tar.gz")+"&files="+ JSON.stringify(selected);
+        window.document.location.href = zipLocation;
   		}
   		else
   		{

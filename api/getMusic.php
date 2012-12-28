@@ -22,7 +22,9 @@ foreach($artists as $artist)
 					if((strlen($song) > 2) && $song != 'lost+found' && strrpos ($song,'.') !== 0)
 					{
 						$musicCounter++;
-						array_push($returnData["aaData"],array($artist, $album, $song));
+						array_push($returnData["aaData"],array('<input name="songCh[]" type="checkbox" value="'.$dir.$artist.'/'.$album.'/'.$song.'"/>', 
+							$artist, $album, str_replace(array('.mp3','.m4a','.ogg'), array('','',''),$song), 
+							'<a target="_blank" href="http://lyrics.wikia.com/'.str_replace(' ','_',$artist).':'.str_replace(array(' ','.mp3','.m4a','.ogg'), array('_','','',''),preg_replace('/^\d\d /','',$song)).'"><button id="Lyric'.$musicCounter.'" class="btn btn-small">Get Lyrics</button></a>'));
 					}
 				}
 			}
