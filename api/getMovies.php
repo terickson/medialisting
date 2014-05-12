@@ -17,7 +17,8 @@ foreach($files as $file)
 		$datapoint .= '">';
 		$datapoint .= str_replace(array('.m4v', '_'), array('', ' '),$file); 
 		$datapoint .= '</a>';
-		array_push($returnData["aaData"],array($datapoint));	
+		$imdbId = "";
+		array_push($returnData["aaData"],array($datapoint, $imdbId));	
 	}
 }
 

@@ -4,11 +4,13 @@
 		<thead>
 				<tr role="row">
 					<th>Movie Title</th>
+					 <th>Imdb Id</th>
 				</tr>
 		</thead>
 		<thead>
 		<tr>
 			<th>Search Movie Titles</th>
+			<th></th>
 		</tr>
 	</thead>
 </table>
@@ -30,9 +32,15 @@
 				"bProcessing": true,
 				"iDisplayLength": -1,
     			"aLengthMenu": [[-1], ["All"]],
-        		"sAjaxSource": "api/getMovies.php"
+        		"sAjaxSource": "api/getMovies.php",
+			"aoColumns": [null,
+                                     { "bSearchable": false, "bSortable": false}]
     		}).columnFilter(
-    		{sPlaceHolder: "head:after"}
+    		{sPlaceHolder: "head:after",
+                        aoColumns: [ { type: "text" },
+                                             null
+                                   ]}
+
     		);
 		});
 	</script>
