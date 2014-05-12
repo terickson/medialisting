@@ -8,7 +8,7 @@ $files = opendir($dir);
 
 $bookCounter = 0;
 $fileCheck = array();
-$responce->sEcho = $echo;
+@$responce->sEcho = $echo;
 $responce->aaData = array();
 while(false !== ($file = readdir($files))){
         if((strlen($file) > 2) && $file != 'lost+found'){

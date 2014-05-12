@@ -9,7 +9,7 @@ $returnData = array("sEcho"=>$echo,"aaData"=>array());
 
 foreach($files as $file)
 {
-	if((strlen($file) > 2) && $file != 'lost+found')
+	if((strlen($file) > 2) && $file != 'lost+found' && (strpos($file, '.') > 0 || strpos($file, '.') === false))
 	{
 		$movieCounter++;
 		$datapoint = '<a target="blank" href="http://www.imdb.com/find?s=all&q=';
