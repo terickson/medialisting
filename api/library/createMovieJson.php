@@ -7,6 +7,12 @@
 	file_put_contents($fileLocation, $movieJson);
 }
 
+function createPosterFile($posterUrl,$fileLocation)
+{
+	$posterBin = file_get_contents($posterUrl);
+	file_put_contents($fileLocation, $posterBin);
+}
+
 function CallAPI($method, $url, $data = false)
 {
     $curl = curl_init();
